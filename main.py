@@ -76,10 +76,10 @@ def main():
 
     for web_page in web_pages:
         # Extract content from the webpage
-        restaurant_name, week_name, titles, descriptions, prices = parse_html(web_page)
+        data = parse_html(web_page)
 
         # Write in text file
-        write_menu(restaurant_name, week_name, titles, descriptions, prices)
+        write_menu(*data)
 
 
 if __name__ == '__main__':
