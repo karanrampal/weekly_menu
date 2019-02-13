@@ -12,7 +12,8 @@ def args_parser():
     """Parse command line arguments
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('--web_page',
+    parser.add_argument('-w',
+                        '--web_page',
                         default='https://ericsson.foodbycoor.se/ericofood/en/weekmenu',
                         help="Webpage to be scraped")
     return parser.parse_args()
