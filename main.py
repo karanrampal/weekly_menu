@@ -5,6 +5,7 @@
 import argparse
 from lxml import html
 import requests
+import time
 
 def args_parser():
     """Parse command line arguments
@@ -35,7 +36,8 @@ def main():
     val = 4 if restaurant == "EricoFood" else 3
 
     # Write in text file
-    with open("menu.txt", "w") as f:
+    file_name = restaurant + time.strftime("%Y%m%d-%H%M%S") + ".txt"
+    with open(file_name, "w") as f:
         for day in weekdays:
             f.write("{0}\n".format(day))
             for i in range(val):
