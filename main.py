@@ -12,10 +12,6 @@ def args_parser():
     """Parse command line arguments
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('-w',
-                        '--web_page',
-                        default='https://ericsson.foodbycoor.se/ericofood/en/weekmenu',
-                        help="Webpage to be scraped")
     return parser.parse_args()
 
 def write_menu(restaurant_name, week_name, titles, descriptions, prices):
@@ -43,8 +39,10 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
 def main():
     """Main function
     """
-    # Read the web page and extract the html content
+    # Read arguments
     args = args_parser()
+
+    # Read the web page and extract the html content
     page = requests.get(args.web_page)
     tree = html.fromstring(page.content)
 
