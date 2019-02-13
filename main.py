@@ -30,11 +30,15 @@ def main():
     prices = tree.xpath('//div[@class="element price col-md-1 col-print-1"]/text()')
     weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
+    # Check restaurant name
+    restaurant = "EricoFood" if "ericofood" in args.web_page else "Factory"
+    val = 4 if restaurant == "EricoFood" else 3
+
     # Write in text file
     with open("menu.txt", "w") as f:
         for day in weekdays:
             f.write("{0}\n".format(day))
-            for i in range(4):
+            for i in range(val):
                 f.write("{0} {1} {2}\n".format(titles[i], descriptions[i], prices[i]))
             f.write("\n")
 
