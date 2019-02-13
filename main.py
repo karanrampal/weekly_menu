@@ -3,9 +3,10 @@
 """
 
 import argparse
+import time
 from lxml import html
 import requests
-import time
+
 
 def args_parser():
     """Parse command line arguments
