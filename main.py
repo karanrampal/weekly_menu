@@ -18,6 +18,11 @@ def parse_html(web_page):
     """Parse the given webpage and extract the desired content such as price, food description
     Args:
         web_page: (string) URL of the webpage
+    Returns:
+        week_name: (string) Name of the week
+        titiles: (string) Category of the food
+        descriptions: (string) Description of the food
+        prices: (string) Price of each food
     """
     # Read the web page and extract the html content
     page = requests.get(web_page)
