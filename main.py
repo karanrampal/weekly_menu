@@ -62,17 +62,18 @@ def main():
     # Read arguments
     args = args_parser()
 
-    wp1 = "https://ericsson.foodbycoor.se/ericofood/en/weekmenu"
-    wp2 = "https://ericsson.foodbycoor.se/the-factory/en/weekmenu"
+    web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu",
+                 "https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
 
-    # Extract content from the webpage
-    week_name, titles, descriptions, prices = parse_html(wp1)
+    for web_page in web_pages:
+        # Extract content from the webpage
+        week_name, titles, descriptions, prices = parse_html(web_page)
 
-    # Check restaurant name
-    restaurant_name = "EricoFood" if "ericofood" in wp1 else "Factory"
+        # Check restaurant name
+        restaurant_name = "EricoFood" if "ericofood" in web_page else "Factory"
 
-    # Write in text file
-    write_menu(restaurant_name, week_name, titles, descriptions, prices)
+        # Write in text file
+        write_menu(restaurant_name, week_name, titles, descriptions, prices)
 
 
 if __name__ == '__main__':
