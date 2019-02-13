@@ -26,10 +26,15 @@ def main():
     tree = html.fromstring(page.content)
 
     # Extract html tag information
+    week = tree.xpath('//h2[@class="header-week"]/text()')
+    week = week[0].strip()
+
     titles = tree.xpath('//div[@class="element title col-md-4 col-print-3"]/text()')
     titles = [x.strip() for x in titles]
+
     descriptions = tree.xpath('//div[@class="element description col-md-4 col-print-5"]/text()')
     prices = tree.xpath('//div[@class="element price col-md-1 col-print-1"]/text()')
+
     weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
     # Check restaurant name
@@ -39,6 +44,7 @@ def main():
     # Write in text file
     file_name = restaurant + time.strftime("%Y%m%d-%H%M%S") + ".txt"
     with open(file_name, "w") as f:
+        f.write("{0}\n".format(week))
         for day in weekdays:
             f.write("{0}\n".format(day))
             for i in range(val):
