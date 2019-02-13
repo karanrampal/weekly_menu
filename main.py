@@ -19,6 +19,7 @@ def parse_html(web_page):
     Args:
         web_page: (string) URL of the webpage
     Returns:
+        restaurant_name: (string) Name of the restaurant
         week_name: (string) Name of the week
         titiles: (string) Category of the food
         descriptions: (string) Description of the food
@@ -37,7 +38,10 @@ def parse_html(web_page):
 
     descriptions = tree.xpath('//div[@class="element description col-md-4 col-print-5"]/text()')
     prices = tree.xpath('//div[@class="element price col-md-1 col-print-1"]/text()')
-    return week_name, titles, descriptions, prices
+
+    # Check restaurant name
+    restaurant_name = "EricoFood" if "ericofood" in web_page else "Factory"
+    return restaurant_name, week_name, titles, descriptions, prices
 
 def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     """Write the menu from the data in the argumntns to a text file
@@ -72,10 +76,7 @@ def main():
 
     for web_page in web_pages:
         # Extract content from the webpage
-        week_name, titles, descriptions, prices = parse_html(web_page)
-
-        # Check restaurant name
-        restaurant_name = "EricoFood" if "ericofood" in web_page else "Factory"
+        restaurant_name, week_name, titles, descriptions, prices = parse_html(web_page)
 
         # Write in text file
         write_menu(restaurant_name, week_name, titles, descriptions, prices)
