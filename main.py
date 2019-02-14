@@ -69,7 +69,7 @@ def main():
     """Main function
     """
     # Read arguments
-    args = args_parser()
+    #args = args_parser()
 
     web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu",
                  "https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
