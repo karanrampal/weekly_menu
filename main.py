@@ -59,10 +59,12 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     file_name = restaurant_name + time.strftime("%Y%m%d-%H%M%S") + ".txt"
     with open(file_name, "w") as f:
         f.write("{0}\n".format(week_name))
+        j = 0
         for day in weekdays:
             f.write("{0}\n".format(day))
             for i in range(val):
-                f.write("{0} {1} {2}\n".format(titles[i], descriptions[i], prices[i]))
+                f.write("{0} {1} {2}\n".format(titles[i + j], descriptions[i + j], prices[i + j]))
+            j += val
             f.write("\n")
 
 def main():
