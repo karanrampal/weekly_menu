@@ -72,8 +72,8 @@ def main():
     # Read arguments
     #args = args_parser()
 
-    web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu",
-                 "https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
+    web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu"]#,
+                 #"https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
 
     for web_page in web_pages:
         # Extract content from the webpage
