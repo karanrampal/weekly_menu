@@ -19,11 +19,11 @@ def parse_html(web_page):
     Args:
         web_page: (string) URL of the webpage
     Returns:
-        restaurant_name: (string) Name of the restaurant
-        week_name: (string) Name of the week
-        titiles: (string) Category of the food
-        descriptions: (string) Description of the food
-        prices: (string) Price of each food
+        restaurant_name: (list) Name of the restaurant
+        week_name: (list) Name of the week
+        titles: (list) Category of the food
+        descriptions: (list) Description of the food
+        prices: (list) Price of each food
     """
     # Read the web page and extract the html content
     page = requests.get(web_page)
@@ -48,9 +48,9 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     Args:
         restaurant_name: (string) Name of the restaurant
         week_name: (string) Name of the week
-        titiles: (string) Category of the food
-        descriptions: (string) Description of the food
-        prices: (string) Price of each food
+        titles: (list) Category of the food
+        descriptions: (list) Description of the food
+        prices: (list) Price of each food
     """
     weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
