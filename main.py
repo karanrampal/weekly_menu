@@ -54,7 +54,7 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     """
     weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
-    val = 4 if restaurant_name == "EricoFood" else 3
+    val = 4 if restaurant_name == "Factory" else 3
 
     file_name = restaurant_name + time.strftime("%Y%m%d-%H%M%S") + ".txt"
     with open(file_name, "w") as f:
@@ -63,7 +63,7 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
             f.write("{0}\n".format(day))
             for i in range(val):
                 index = i + idx * val
-                f.write("{0} {1} {2}\n".format(titles[index], descriptions[index], prices[index]))
+                f.write(f"{titles[index]} {descriptions[index]} {prices[index]}\n")
             f.write("\n")
 
 def main():
@@ -72,8 +72,8 @@ def main():
     # Read arguments
     #args = args_parser()
 
-    web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu"]#,
-                 #"https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
+    web_pages = ["https://ericsson.foodbycoor.se/ericofood/en/weekmenu",
+                 "https://ericsson.foodbycoor.se/the-factory/en/weekmenu"]
 
     for web_page in web_pages:
         # Extract content from the webpage
