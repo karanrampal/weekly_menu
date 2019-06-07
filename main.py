@@ -43,6 +43,25 @@ def parse_html(web_page):
     restaurant_name = "EricoFood" if "ericofood" in web_page else "Factory"
     return restaurant_name, week_name, titles, descriptions, prices
 
+def align_menu(restaurant_name, titles, descriptions, prices):
+    """Align the menu when there are off days
+    Args:
+    restaurant_name: (string) Name of the restaurant
+        titles: (list) Category of the food
+        descriptions: (list) Description of the food
+        prices: (list) Price of each food
+    Return:
+        descriptions: (list) Description of the food
+        prices: (list) Price of each food algined with the titles
+    """
+    for i, val in enumerate(titles):
+        if val in ["CLOSED", "Closed"]:
+            if restaurant_name == "EricoFood":
+                prices.insert(i, "0 kr.")
+            else:
+                descriptions.insert(i, "Holiday.")
+    return descriptions, prices
+
 def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     """Write the menu from the data in the argumntns to a text file
     Args:
@@ -55,6 +74,7 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
     weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
     val = 4 if restaurant_name == "Factory" else 3
+    cor = 0
 
     file_name = restaurant_name + time.strftime("%Y%m%d-%H%M%S") + ".txt"
     with open(file_name, "w") as f:
@@ -62,8 +82,11 @@ def write_menu(restaurant_name, week_name, titles, descriptions, prices):
         for idx, day in enumerate(weekdays):
             f.write("{0}\n".format(day))
             for i in range(val):
-                index = i + idx * val
+                index = i + (idx * val) - ((val-1) * cor)
                 f.write(f"{titles[index]} {descriptions[index]} {prices[index]}\n")
+                if titles[index] in ["CLOSED", "Closed"]:
+                    cor += 1
+                    break
             f.write("\n")
 
 def main():
@@ -77,10 +100,13 @@ def main():
 
     for web_page in web_pages:
         # Extract content from the webpage
-        data = parse_html(web_page)
+        restaurant_name, week_name, titles, descriptions, prices = parse_html(web_page)
+
+        # Align the menu when there are off days
+        descriptions, prices = align_menu(restaurant_name, titles, descriptions, prices)
 
         # Write in text file
-        write_menu(*data)
+        write_menu(restaurant_name, week_name, titles, descriptions, prices)
 
 
 if __name__ == '__main__':
